@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('nxb', function (Blueprint $table) {
+        Schema::create('book_category_groups', function (Blueprint $table) {
             $table->id();
-            $table->int('nxb_id');
-            $table->string('nxb_name');
+            $table->foreignId('book_id')->constrained('books')->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nxb');
+        Schema::dropIfExists('book_category_groups');
     }
 };
